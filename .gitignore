@@ -1,0 +1,47 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+.venv/
+ai_service/venv/
+
+# Python build / cache
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Model / dataset / heavy files
+*.h5
+*.hdf5
+*.pt
+*.pth
+*.onnx
+*.pb
+dataset/
+datasets/
+models/
+checkpoints/
+
+# Logs
+*.log
+
+# Node
+node_modules/
+
+# CI3 writable cache/logs
+application/cache/*
+!application/cache/index.html
+application/logs/*
+!application/logs/index.html
