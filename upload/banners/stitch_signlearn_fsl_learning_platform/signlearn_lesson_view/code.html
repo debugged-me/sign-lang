@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SignLearn - Lesson View</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#69f6b8",
+                    "error": "#b31b25",
+                    "surface-tint": "#00647d",
+                    "on-error-container": "#570008",
+                    "outline": "#6f768e",
+                    "on-primary": "#e3f6ff",
+                    "tertiary": "#815100",
+                    "surface-container-low": "#eef0ff",
+                    "secondary-fixed-dim": "#58e7ab",
+                    "primary-fixed-dim": "#81d1f0",
+                    "on-tertiary-container": "#4a2c00",
+                    "primary-dim": "#00576d",
+                    "tertiary-container": "#f8a010",
+                    "secondary": "#006947",
+                    "surface": "#f6f6ff",
+                    "secondary-fixed": "#69f6b8",
+                    "outline-variant": "#a5adc6",
+                    "on-surface-variant": "#535b71",
+                    "on-secondary-fixed-variant": "#006544",
+                    "on-secondary-container": "#005a3c",
+                    "surface-container-highest": "#d1dcff",
+                    "inverse-surface": "#060e20",
+                    "secondary-dim": "#005c3d",
+                    "inverse-primary": "#8fdfff",
+                    "error-container": "#fb5151",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-background": "#272e42",
+                    "surface-bright": "#f6f6ff",
+                    "on-primary-fixed": "#003b4c",
+                    "primary": "#00647d",
+                    "on-primary-fixed-variant": "#005a71",
+                    "primary-container": "#8fdfff",
+                    "tertiary-fixed-dim": "#e79400",
+                    "surface-dim": "#c7d4fa",
+                    "on-tertiary": "#fff0e3",
+                    "surface-container-high": "#d9e2ff",
+                    "on-primary-container": "#005065",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#00452d",
+                    "inverse-on-surface": "#959cb5",
+                    "error-dim": "#9f0519",
+                    "background": "#f6f6ff",
+                    "surface-variant": "#d1dcff",
+                    "primary-fixed": "#8fdfff",
+                    "tertiary-dim": "#714600",
+                    "surface-container": "#e2e7ff",
+                    "tertiary-fixed": "#f8a010",
+                    "on-tertiary-fixed-variant": "#563400",
+                    "on-error": "#ffefee",
+                    "on-surface": "#272e42",
+                    "on-secondary": "#c8ffe0"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .kinetic-lift:hover {
+            transform: translateY(-4px);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .glass-overlay {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .progress-spring {
+            transition: width 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="h-screen w-64 rounded-r-[2rem] sticky left-0 top-0 bg-white dark:bg-slate-900 shadow-[10px_0_30px_rgba(0,0,0,0.02)] flex flex-col py-8 space-y-2 z-50">
+<div class="px-8 mb-10">
+<h1 class="text-xl font-bold text-[#0E7490] font-['Plus_Jakarta_Sans']">SignLearn</h1>
+<p class="text-xs text-on-surface-variant font-medium">FSL Learning Platform</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="text-slate-600 dark:text-slate-400 hover:text-cyan-700 px-10 py-3 flex items-center gap-3 hover:translate-x-2 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-cyan-700 px-10 py-3 flex items-center gap-3 hover:translate-x-2 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Dictionary</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-cyan-700 px-10 py-3 flex items-center gap-3 hover:translate-x-2 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">exercise</span>
+<span>Practice</span>
+</a>
+<a class="bg-cyan-700 text-white rounded-full mx-4 py-3 px-6 shadow-lg shadow-cyan-700/20 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+<span>Lessons</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-cyan-700 px-10 py-3 flex items-center gap-3 hover:translate-x-2 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span>Quizzes</span>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-cyan-700 px-10 py-3 flex items-center gap-3 hover:translate-x-2 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span>Progress</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-surface-container-low pt-4">
+<a class="text-slate-600 dark:text-slate-400 hover:text-error px-10 py-3 flex items-center gap-3 hover:translate-x-2 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col min-w-0">
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-[#f6f6ff] dark:bg-slate-950 shadow-[0_20px_40px_rgba(14,116,144,0.06)] sticky top-0 z-40">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-6">
+<span class="text-2xl font-bold text-[#0E7490] dark:text-cyan-300 tracking-tighter font-headline">SignLearn</span>
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+<a class="text-[#0E7490] border-b-2 border-[#0E7490] pb-1" href="#">Academy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-cyan-50 transition-all duration-300 px-3 py-1 rounded-lg" href="#">Community</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-cyan-50 transition-all duration-300 px-3 py-1 rounded-lg" href="#">Resources</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-container-low rounded-full px-4 py-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48" placeholder="Search signs..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-cyan-50 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-cyan-50 rounded-full transition-all duration-300">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-primary-container overflow-hidden">
+<img alt="User Profile" data-alt="professional headshot of a friendly man in a blue shirt with a clean studio background and soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOavGVLcLKx8SERO461VJSlu-Mc6ZrN5T68c1XQOE7nAElStfXFw5X8_niv18q121BTCY4koAyOygZBdfsRfljlPqRNGrMjcBqQ1a5Fz-8LwFAQImXt2moEuaASFBFEp3wiWMaalm4gG_chjH4R9yCCXALmvuArAhEgoAB7If35pbAJwXzxJGZ0tJ4scr657Fiwbe-XdgjYvHnOidXm4HQcHm3fOOMZ1o1-4YvSNXfCgwP7iQJv-EjWP2Kjn86Tcdr62YQtteYBHel"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 p-8 lg:p-12 max-w-[1600px] mx-auto w-full">
+<!-- Breadcrumb & Title Section -->
+<div class="mb-10 flex justify-between items-end">
+<div>
+<div class="flex items-center gap-2 text-sm text-on-surface-variant mb-2">
+<span>Unit 2: Daily Life</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-primary font-semibold">Lesson 4: Greetings</span>
+</div>
+<h2 class="text-4xl font-bold tracking-tight font-headline text-on-surface">Signing "Bonjour" (Hello)</h2>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="text-sm font-medium text-on-surface-variant">Module Progress: 65%</span>
+<div class="w-48 h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-gradient-to-r from-secondary to-secondary-fixed-dim h-full progress-spring" style="width: 65%;"></div>
+</div>
+</div>
+</div>
+<!-- Kinetic Editorial Layout (Asymmetric Grid) -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Center Video Player Area -->
+<div class="col-span-12 lg:col-span-8 space-y-8">
+<div class="relative group rounded-[2.5rem] overflow-hidden bg-black aspect-video shadow-2xl">
+<img alt="Sign Language Instructor" class="w-full h-full object-cover opacity-90" data-alt="a professional sign language instructor performing the 'hello' sign in a brightly lit modern studio with a clean minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0fOjy3PDItl6h3BwhUzi_66oQA0u0yl59XL-Sj_4Syd1yA0PP4TUDfamQTZyUFE6WVeb2tQiP9NVtAcmX6WA6QWERWq9mcRqWQs4B8ojhtaMjoUq50Ue_t4dDl-XOnkRbpnmCgpxqaWwp6jWUg_2lAutcRlEYRQGyiXlGLWayjXKUVDbUCyy3MCqqcuYDX3Ffwt2HQSKCcYLbwQYRcx-jqnujmfkJ2YHrYbiXCmGNTBEs8tMzOn7NXpGN14312vmV1V1Jpfvqtcca"/>
+<!-- Video Controls Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+<div class="flex items-center gap-6 text-white">
+<button class="material-symbols-outlined text-4xl hover:scale-110 transition-transform">play_arrow</button>
+<div class="flex-1 h-1.5 bg-white/30 rounded-full relative">
+<div class="absolute top-0 left-0 h-full w-1/3 bg-secondary-fixed rounded-full"></div>
+</div>
+<span class="text-sm font-mono">0:12 / 0:45</span>
+<button class="material-symbols-outlined text-2xl hover:scale-110 transition-transform">speed</button>
+<button class="material-symbols-outlined text-2xl hover:scale-110 transition-transform">fullscreen</button>
+</div>
+</div>
+<!-- Secondary View (Profile Angle) -->
+<div class="absolute top-6 right-6 w-48 aspect-video rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl glass-overlay">
+<img alt="Profile View" class="w-full h-full object-cover" data-alt="side profile view of hands performing French Sign Language against a soft neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjnuxtKU-D2xe-YcoDab-4rShPo-jRqD86iqqD13Wmirh7O5-fXIV6awg_IyX7rAHJf4vYaPt6Yq8xnby2_pGZ9yrp_nObO1BTaqUkVhEpWtpm8pm9-WUnPXGB3KK9vZEi5QFCAwaBZJVjLN9RnIKqz5dtEAeF-Ird0CHSeyRyYtnQVt3hiSfupPWTLuOBbnyj34_rYOxslsIVPh_UF_os7qMg0upjB234SoBPyRaL3qZ67Q_e-oyd_YaYmK_imt1RzXaxB9rWckOF"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="bg-black/50 text-[10px] px-2 py-0.5 rounded-full text-white uppercase tracking-widest font-bold">Side View</span>
+</div>
+</div>
+</div>
+<!-- Step-by-Step Instructions -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-3xl kinetic-lift">
+<div class="w-10 h-10 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-4 font-bold">1</div>
+<h4 class="font-headline font-semibold text-lg mb-2">Hand Shape</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Flat hand, fingers together, thumb tucked slightly against the palm.</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-3xl kinetic-lift">
+<div class="w-10 h-10 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-4 font-bold">2</div>
+<h4 class="font-headline font-semibold text-lg mb-2">Starting Point</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Touch the fingertips of your dominant hand to your forehead or temple.</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-3xl kinetic-lift">
+<div class="w-10 h-10 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mb-4 font-bold">3</div>
+<h4 class="font-headline font-semibold text-lg mb-2">The Movement</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Move the hand outward and slightly downward in a small arc motion.</p>
+</div>
+</div>
+</div>
+<!-- Sidebar Content -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Common Mistakes Section -->
+<section class="bg-error-container/10 p-8 rounded-[2rem] relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-8xl text-error">warning</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-error">error</span>
+                            Common Mistakes
+                        </h3>
+<ul class="space-y-4">
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-error text-sm mt-1">cancel</span>
+<p class="text-sm text-on-surface-variant"><span class="font-bold text-on-surface">Wrist Tension:</span> Don't keep your wrist too stiff; let the movement flow naturally from the elbow.</p>
+</li>
+<li class="flex gap-3">
+<span class="material-symbols-outlined text-error text-sm mt-1">cancel</span>
+<p class="text-sm text-on-surface-variant"><span class="font-bold text-on-surface">Placement:</span> Avoid starting the sign from your chest; "Bonjour" always originates near the head.</p>
+</li>
+</ul>
+</section>
+<!-- Practice Section -->
+<section class="bg-surface-container-lowest p-8 rounded-[2rem] shadow-sm border border-outline-variant/10">
+<h3 class="font-headline font-bold text-xl text-on-surface mb-4">Master this Sign</h3>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">Use your camera to receive real-time AI feedback on your hand positioning and movement fluidity.</p>
+<div class="relative inline-block w-full">
+<!-- Pulse Effect Placeholder -->
+<div class="absolute inset-0 bg-primary rounded-full animate-ping opacity-20"></div>
+<button class="relative w-full py-4 bg-gradient-to-r from-primary to-primary-dim text-on-primary rounded-full font-bold flex items-center justify-center gap-3 shadow-xl hover:shadow-primary/30 transition-all scale-100 active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">videocam</span>
+                                Practice this Sign
+                            </button>
+</div>
+<div class="mt-8 pt-8 border-t border-surface-container-low flex items-center justify-between">
+<div class="flex -space-x-2">
+<img alt="Learner" class="w-8 h-8 rounded-full border-2 border-white" data-alt="close up of a smiling man portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIHGOvtoqyfhILt0Fop06e5t1NFyUKT1S57i9AbcWxO3kPBrPgVYepW8S8P4SgSJTxy9GHCB3cS6y6MDzVbvfX90V8Sp_UY7_BoyAKKtkut-DBPS6vaAVgp9sAKbM-eWl_JsXbO5uCpry30aZgR1iSk9PQsQwI-FFaHCPM459thc6_EEcFA736WOaTuXkzAFTV_fl68bGyR9aTLH9zN4N2LTAixvlpnJP7ZX_aF6vlk_wL7ZqYvYOBZmHSoX1pstjKV8iMmZ0s4Dlu"/>
+<img alt="Learner" class="w-8 h-8 rounded-full border-2 border-white" data-alt="close up of a cheerful woman portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDx1WuZNfRfcEZCwN7Y7w-oxgYAYTVskyxpxTzoOlF9cl6RzlI7HoB1D5SmI9yqy1Yf5LLKIssVu-XcBtwpgv__Lx5mjm5GrI4_7OygG7QGMhncutMcWbV2t_jIVlP9gHYdUdyo4_3N0SF4anL4hhmNG7c_7_0EGLRMSkkEks9IYS-iMrlwZAsZtKGl4tb2kGZopuwAGjVILGO5cWnRDSyJqM0laf7gXORbaxknO-kwBNxqk9CBKddtYs6pG_GHKpZvxrAgWpAhx5yy"/>
+<div class="w-8 h-8 rounded-full bg-secondary-container border-2 border-white flex items-center justify-center text-[10px] font-bold">+12</div>
+</div>
+<span class="text-xs font-medium text-on-surface-variant">Practicing now</span>
+</div>
+</section>
+<!-- Next Up Card -->
+<div class="group cursor-pointer bg-secondary-container/20 p-6 rounded-[2rem] border border-secondary-container/30 kinetic-lift">
+<div class="flex justify-between items-start mb-4">
+<span class="text-[10px] uppercase font-bold tracking-widest text-secondary py-1 px-3 bg-white/50 rounded-full">Coming Up</span>
+<span class="material-symbols-outlined text-secondary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+<h4 class="font-headline font-bold text-lg text-on-surface mb-1">Asking "Comment ça va?"</h4>
+<p class="text-xs text-on-surface-variant">Learn the phrase for 'How are you?'</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
