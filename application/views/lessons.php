@@ -10,23 +10,28 @@
         <div class="content-page">
             <div class="content">
                 <div class="container-fluid">
-                    <!-- Page Title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
-                                <h4 class="page-title">FSL Lessons</h4>
-                            </div>
-                        </div>
+                    <!-- Page Header -->
+                    <div class="sl-page-header">
+                        <span class="sl-section-subtitle">Structured Learning Path</span>
+                        <h1 class="sl-page-title">FSL Lessons</h1>
+                        <p class="sl-page-subtitle">Master Filipino Sign Language through guided lessons</p>
                     </div>
 
                     <!-- Difficulty Filter -->
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <div class="btn-group" role="group">
-                                <a href="<?= base_url('FSL/lessons') ?>" class="btn btn-outline-primary <?= !$this->input->get('difficulty') ? 'active' : '' ?>">All Levels</a>
-                                <a href="<?= base_url('FSL/lessons?difficulty=beginner') ?>" class="btn btn-outline-primary <?= $this->input->get('difficulty') == 'beginner' ? 'active' : '' ?>">Beginner</a>
-                                <a href="<?= base_url('FSL/lessons?difficulty=intermediate') ?>" class="btn btn-outline-primary <?= $this->input->get('difficulty') == 'intermediate' ? 'active' : '' ?>">Intermediate</a>
-                                <a href="<?= base_url('FSL/lessons?difficulty=advanced') ?>" class="btn btn-outline-primary <?= $this->input->get('difficulty') == 'advanced' ? 'active' : '' ?>">Advanced</a>
+                    <div class="sl-card mb-4">
+                        <div class="p-4">
+                            <div class="d-flex flex-wrap align-items-center gap-3">
+                                <span class="font-weight-semibold mr-3" style="color: var(--sl-text);">Filter by level:</span>
+                                <div class="sl-filter-group">
+                                    <a href="<?= base_url('FSL/lessons') ?>"
+                                        class="sl-filter-btn <?= !$this->input->get('difficulty') ? 'active' : '' ?>">All Levels</a>
+                                    <a href="<?= base_url('FSL/lessons?difficulty=beginner') ?>"
+                                        class="sl-filter-btn <?= $this->input->get('difficulty') == 'beginner' ? 'active' : '' ?>">Beginner</a>
+                                    <a href="<?= base_url('FSL/lessons?difficulty=intermediate') ?>"
+                                        class="sl-filter-btn <?= $this->input->get('difficulty') == 'intermediate' ? 'active' : '' ?>">Intermediate</a>
+                                    <a href="<?= base_url('FSL/lessons?difficulty=advanced') ?>"
+                                        class="sl-filter-btn <?= $this->input->get('difficulty') == 'advanced' ? 'active' : '' ?>">Advanced</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -37,38 +42,50 @@
                             $progress = isset($lesson->user_progress) ? $lesson->user_progress : array('progress_percentage' => 0, 'is_completed' => false);
                         ?>
                             <div class="col-md-6 col-lg-4 mb-4">
-                                <div class="card lesson-card h-100">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-start mb-2">
-                                            <span class="badge badge-<?= $lesson->difficulty_level == 'beginner' ? 'success' : ($lesson->difficulty_level == 'intermediate' ? 'warning' : 'danger') ?>">
+                                <div class="sl-lesson-card h-100">
+                                    <div class="sl-lesson-header">
+                                        <div class="d-flex justify-content-between align-items-start mb-3">
+                                            <span class="sl-badge sl-badge-<?= $lesson->difficulty_level ?>">
                                                 <?= ucfirst($lesson->difficulty_level) ?>
                                             </span>
                                             <?php if ($progress['is_completed']): ?>
-                                                <span class="badge badge-success"><i class="mdi mdi-check-circle"></i> Completed</span>
+                                                <span class="sl-badge sl-badge-mastered">
+                                                    <i class="mdi mdi-check-circle mr-1"></i>Completed
+                                                </span>
                                             <?php endif; ?>
                                         </div>
-
-                                        <h4 class="card-title"><?= $lesson->lesson_title ?></h4>
-                                        <p class="card-text text-muted"><?= $lesson->lesson_description ?></p>
-
-                                        <div class="lesson-meta mb-3">
-                                            <span class="mr-3"><i class="mdi mdi-format-list-bulleted"></i> <?= $lesson->total_signs ?> signs</span>
-                                            <span><i class="mdi mdi-clock-outline"></i> <?= $lesson->estimated_duration ?> min</span>
-                                        </div>
-
-                                        <div class="progress mb-2" style="height: 8px;">
-                                            <div class="progress-bar" role="progressbar"
-                                                style="width: <?= $progress['progress_percentage'] ?>%"
-                                                aria-valuenow="<?= $progress['progress_percentage'] ?>"
-                                                aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                        <small class="text-muted"><?= $progress['progress_percentage'] ?>% complete</small>
+                                        <h4 class="font-weight-bold mb-2" style="color: var(--sl-text);"><?= $lesson->lesson_title ?></h4>
+                                        <p style="color: var(--sl-text-muted); font-size: 0.9375rem; line-height: 1.6;">
+                                            <?= $lesson->lesson_description ?>
+                                        </p>
                                     </div>
-                                    <div class="card-footer bg-transparent">
-                                        <div class="btn-group w-100">
-                                            <a href="<?= base_url('FSL/lesson/' . $lesson->lesson_id) ?>" class="btn btn-outline-primary">Learn</a>
-                                            <a href="<?= base_url('Practice/lesson/' . $lesson->lesson_id) ?>" class="btn btn-primary">Practice</a>
+                                    <div class="sl-lesson-body">
+                                        <div class="d-flex align-items-center mb-4" style="color: var(--sl-text-muted);">
+                                            <span class="mr-4"><i class="mdi mdi-format-list-bulleted mr-2" style="color: var(--sl-primary);"></i><?= $lesson->total_signs ?> signs</span>
+                                            <span><i class="mdi mdi-clock-outline mr-2" style="color: var(--sl-primary);"></i><?= $lesson->estimated_duration ?> min</span>
+                                        </div>
+                                        <div class="mb-2">
+                                            <div class="d-flex justify-content-between small mb-1">
+                                                <span style="color: var(--sl-text-muted);">Your Progress</span>
+                                                <span class="font-weight-semibold" style="color: var(--sl-primary);"><?= $progress['progress_percentage'] ?>%</span>
+                                            </div>
+                                            <div class="sl-progress">
+                                                <div class="sl-progress-bar" style="width: <?= $progress['progress_percentage'] ?>%; background: linear-gradient(90deg, var(--sl-primary) 0%, var(--sl-primary-light) 100%);"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sl-lesson-footer">
+                                        <div class="d-flex gap-2">
+                                            <a href="<?= base_url('FSL/lesson/' . $lesson->lesson_id) ?>"
+                                                class="sl-btn sl-btn-outline flex-fill text-center"
+                                                style="padding: 10px 20px; font-size: 0.875rem;">
+                                                <i class="mdi mdi-book-open-outline mr-2"></i>Learn
+                                            </a>
+                                            <a href="<?= base_url('Practice/lesson/' . $lesson->lesson_id) ?>"
+                                                class="sl-btn sl-btn-primary flex-fill text-center"
+                                                style="padding: 10px 20px; font-size: 0.875rem;">
+                                                <i class="mdi mdi-camera mr-2"></i>Practice
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -77,25 +94,20 @@
                     </div>
 
                     <?php if (empty($lessons)): ?>
-                        <div class="row">
-                            <div class="col-12 text-center py-5">
-                                <i class="mdi mdi-book-open-variant" style="font-size: 64px; color: #ccc;"></i>
-                                <h4 class="mt-3 text-muted">No lessons available</h4>
-                                <p class="text-muted">Check back soon for new lessons!</p>
+                        <div class="sl-card">
+                            <div class="sl-empty-state">
+                                <i class="mdi mdi-school-outline"></i>
+                                <h4 style="color: var(--sl-text);">No lessons available</h4>
+                                <p style="color: var(--sl-text-muted);">Check back soon for new lessons!</p>
                             </div>
                         </div>
                     <?php endif; ?>
 
                 </div>
-                <!-- end container-fluid -->
             </div>
-            <!-- end content -->
-
             <?php $this->load->view('includes/footer'); ?>
         </div>
-        <!-- End Page content -->
     </div>
-    <!-- END wrapper -->
 
     <?php $this->load->view('includes/footer_plugins'); ?>
 </body>

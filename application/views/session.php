@@ -350,13 +350,24 @@
             }
 
             // Submit to server
-            submitAttempt(currentSign.sign_id, result.prediction, result.confidence, isCorrect);
+            submitAttempt(currentSign.sign_id, result.prediction, result.confidence, isCorrect, imageData);
 
             // Show result modal
             showResultModal(isCorrect, result.prediction, result.confidence, currentSign);
         }
 
-        function simulateRecognition() {
+        async function simulateRecognition() {
+            // Capture the image first
+            const video = document.getElementById('webcam');
+            const canvas = document.getElementById('captureCanvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.translate(canvas.width, 0);
+            ctx.scale(-1, 1);
+            ctx.drawImage(video, 0, 0);
+            const imageData = canvas.toDataURL('image/jpeg', 0.8);
+
             // For demo without AI service - random result
             const currentSign = sessionData.signs[sessionData.currentIndex];
             const isCorrect = Math.random() > 0.3; // 70% accuracy for demo
@@ -367,17 +378,23 @@
                 document.getElementById('currentScore').textContent = sessionData.correctCount;
             }
 
-            submitAttempt(currentSign.sign_id, isCorrect ? currentSign.model_label : 'UNKNOWN', confidence, isCorrect);
+            submitAttempt(currentSign.sign_id, isCorrect ? currentSign.model_label : 'UNKNOWN', confidence, isCorrect, imageData);
             showResultModal(isCorrect, isCorrect ? currentSign.sign_name : 'Unknown', confidence, currentSign);
         }
 
-        function submitAttempt(signId, recognizedLabel, confidence, isCorrect) {
+        function submitAttempt(signId, recognizedLabel, confidence, isCorrect, imageData = null) {
+            const formData = new FormData();
+            formData.append('session_id', sessionData.sessionId);
+            formData.append('sign_id', signId);
+            formData.append('recognized_label', recognizedLabel);
+            formData.append('confidence', confidence);
+            if (imageData) {
+                formData.append('image', imageData);
+            }
+
             fetch('<?= base_url('Practice/process_recognition') ?>', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: `session_id=${sessionData.sessionId}&sign_id=${signId}&recognized_label=${recognizedLabel}&confidence=${confidence}`
+                    body: formData
                 })
                 .then(response => response.json())
                 .then(data => {

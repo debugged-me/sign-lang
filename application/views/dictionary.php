@@ -10,74 +10,94 @@
         <div class="content-page">
             <div class="content">
                 <div class="container-fluid">
-                    <!-- Page Title -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
-                                <h4 class="page-title">FSL Dictionary</h4>
+                    <!-- Page Header -->
+                    <div class="sl-page-header">
+                        <span class="sl-section-subtitle">Browse & Learn</span>
+                        <h1 class="sl-page-title">FSL Dictionary</h1>
+                        <p class="sl-page-subtitle">Explore <?= $stats['total'] ?> signs in the Filipino Sign Language dictionary</p>
+                    </div>
+
+                    <!-- Stats Overview -->
+                    <div class="row mb-4">
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="sl-card p-4 text-center sl-card-animated">
+                                <div class="sl-stat-value" style="font-size: 2.5rem; color: var(--sl-primary);" data-plugin="counterup"><?= $stats['total'] ?></div>
+                                <div class="sl-stat-label">Total Signs</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="sl-card p-4 text-center sl-card-animated" style="animation-delay: 0.05s;">
+                                <div class="sl-stat-value" style="font-size: 2.5rem; color: var(--sl-secondary);" data-plugin="counterup"><?= $stats['alphabet'] ?></div>
+                                <div class="sl-stat-label">Alphabet</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="sl-card p-4 text-center sl-card-animated" style="animation-delay: 0.1s;">
+                                <div class="sl-stat-value" style="font-size: 2.5rem; color: var(--sl-accent);" data-plugin="counterup"><?= $stats['number'] ?></div>
+                                <div class="sl-stat-label">Numbers</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-6 mb-3">
+                            <div class="sl-card p-4 text-center sl-card-animated" style="animation-delay: 0.15s;">
+                                <div class="sl-stat-value" style="font-size: 2.5rem; color: var(--sl-success);" data-plugin="counterup"><?= $stats['word'] + $stats['phrase'] ?></div>
+                                <div class="sl-stat-label">Words & Phrases</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Stats & Filters -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-box">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <div class="row text-center">
-                                            <div class="col-3">
-                                                <h3 class="m-0"><?= $stats['total'] ?></h3>
-                                                <small>Total Signs</small>
+                    <!-- Search & Filters -->
+                    <div class="sl-card mb-4">
+                        <div class="p-4">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 mb-3 mb-lg-0">
+                                    <form action="<?= base_url('FSL/dictionary') ?>" method="get">
+                                        <div class="input-group" style="border: 2px solid var(--sl-border); border-radius: 12px; overflow: hidden;">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text border-0 bg-white" style="padding-left: 16px;">
+                                                    <i class="mdi mdi-magnify" style="color: var(--sl-text-muted);"></i>
+                                                </span>
                                             </div>
-                                            <div class="col-3">
-                                                <h3 class="m-0"><?= $stats['alphabet'] ?></h3>
-                                                <small>Alphabet</small>
+                                            <input type="text" name="search" class="form-control border-0"
+                                                placeholder="Search signs..."
+                                                value="<?= isset($filters['search']) ? $filters['search'] : '' ?>"
+                                                style="font-weight: 500;">
+                                            <div class="input-group-append">
+                                                <button class="sl-btn sl-btn-primary" type="submit" style="border-radius: 0; padding: 12px 20px;">
+                                                    Search
+                                                </button>
                                             </div>
-                                            <div class="col-3">
-                                                <h3 class="m-0"><?= $stats['number'] ?></h3>
-                                                <small>Numbers</small>
-                                            </div>
-                                            <div class="col-3">
-                                                <h3 class="m-0"><?= $stats['word'] + $stats['phrase'] ?></h3>
-                                                <small>Words & Phrases</small>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-lg-8">
+                                    <div class="d-flex flex-wrap align-items-center gap-2">
+                                        <div class="sl-filter-group mr-3">
+                                            <a href="<?= base_url('FSL/dictionary') ?>"
+                                                class="sl-filter-btn <?= empty($filters['sign_type']) && empty($filters['category_id']) ? 'active' : '' ?>">All Signs</a>
+                                            <a href="<?= base_url('FSL/dictionary?type=alphabet') ?>"
+                                                class="sl-filter-btn <?= isset($filters['sign_type']) && $filters['sign_type'] == 'alphabet' ? 'active' : '' ?>">ABC</a>
+                                            <a href="<?= base_url('FSL/dictionary?type=number') ?>"
+                                                class="sl-filter-btn <?= isset($filters['sign_type']) && $filters['sign_type'] == 'number' ? 'active' : '' ?>">123</a>
+                                        </div>
+                                        <div class="sl-filter-group mr-3">
+                                            <a href="<?= base_url('FSL/dictionary?type=word') ?>"
+                                                class="sl-filter-btn <?= isset($filters['sign_type']) && $filters['sign_type'] == 'word' ? 'active' : '' ?>">Words</a>
+                                            <a href="<?= base_url('FSL/dictionary?type=phrase') ?>"
+                                                class="sl-filter-btn <?= isset($filters['sign_type']) && $filters['sign_type'] == 'phrase' ? 'active' : '' ?>">Phrases</a>
+                                        </div>
+                                        <div class="dropdown">
+                                            <button class="sl-btn sl-btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                                                <i class="mdi mdi-folder-outline mr-2"></i>Categories
+                                            </button>
+                                            <div class="dropdown-menu" style="border-radius: 12px; border: 1px solid var(--sl-border); box-shadow: var(--sl-shadow-lg);">
+                                                <?php foreach ($categories as $cat): ?>
+                                                    <a class="dropdown-item py-2" href="<?= base_url('FSL/dictionary?category=' . $cat->category_id) ?>">
+                                                        <?= $cat->category_name ?>
+                                                    </a>
+                                                <?php endforeach; ?>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <form action="<?= base_url('FSL/dictionary') ?>" method="get" class="form-inline justify-content-end">
-                                            <div class="input-group w-100">
-                                                <input type="text" name="search" class="form-control" placeholder="Search signs..." value="<?= isset($filters['search']) ? $filters['search'] : '' ?>">
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Filters -->
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <div class="btn-group" role="group">
-                                <a href="<?= base_url('FSL/dictionary') ?>" class="btn btn-outline-primary <?= empty($filters['sign_type']) && empty($filters['category_id']) ? 'active' : '' ?>">All</a>
-                                <a href="<?= base_url('FSL/dictionary?type=alphabet') ?>" class="btn btn-outline-primary <?= isset($filters['sign_type']) && $filters['sign_type'] == 'alphabet' ? 'active' : '' ?>">Alphabet</a>
-                                <a href="<?= base_url('FSL/dictionary?type=number') ?>" class="btn btn-outline-primary <?= isset($filters['sign_type']) && $filters['sign_type'] == 'number' ? 'active' : '' ?>">Numbers</a>
-                                <a href="<?= base_url('FSL/dictionary?type=word') ?>" class="btn btn-outline-primary <?= isset($filters['sign_type']) && $filters['sign_type'] == 'word' ? 'active' : '' ?>">Words</a>
-                                <a href="<?= base_url('FSL/dictionary?type=phrase') ?>" class="btn btn-outline-primary <?= isset($filters['sign_type']) && $filters['sign_type'] == 'phrase' ? 'active' : '' ?>">Phrases</a>
-                            </div>
-
-                            <div class="btn-group ml-2" role="group">
-                                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
-                                    Categories
-                                </button>
-                                <div class="dropdown-menu">
-                                    <?php foreach ($categories as $cat): ?>
-                                        <a class="dropdown-item" href="<?= base_url('FSL/dictionary?category=' . $cat->category_id) ?>"><?= $cat->category_name ?></a>
-                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
@@ -87,49 +107,48 @@
                     <div class="row">
                         <?php foreach ($signs as $sign): ?>
                             <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
-                                <div class="card sign-card h-100">
-                                    <div class="card-body text-center">
-                                        <?php if ($sign->image_path && file_exists(FCPATH . $sign->image_path)): ?>
-                                            <img src="<?= base_url($sign->image_path) ?>" alt="<?= $sign->sign_name ?>" class="img-fluid mb-2" style="max-height: 120px;">
-                                        <?php else: ?>
-                                            <div class="sign-placeholder bg-light d-flex align-items-center justify-content-center mb-2 rounded" style="height: 120px;">
-                                                <i class="mdi mdi-hand-pointing-right text-muted" style="font-size: 48px;"></i>
+                                <a href="<?= base_url('FSL/sign_detail/' . $sign->sign_id) ?>" class="text-decoration-none">
+                                    <div class="sl-sign-card h-100">
+                                        <div class="sl-sign-preview" style="height: 160px;">
+                                            <?php if ($sign->image_path && file_exists(FCPATH . $sign->image_path)): ?>
+                                                <img src="<?= base_url($sign->image_path) ?>" alt="<?= $sign->sign_name ?>">
+                                            <?php else: ?>
+                                                <i class="mdi mdi-hand-pointing-right" style="font-size: 48px; color: #CBD5E1;"></i>
+                                            <?php endif; ?>
+                                        </div>
+                                        <div class="sl-sign-name"><?= $sign->sign_name ?></div>
+                                        <span class="sl-badge" style="background: rgba(37, 99, 235, 0.1); color: var(--sl-primary);">
+                                            <?= ucfirst($sign->sign_type) ?>
+                                        </span>
+                                        <?php if ($sign->category_name): ?>
+                                            <div class="mt-2" style="font-size: 0.75rem; color: var(--sl-text-muted);">
+                                                <?= $sign->category_name ?>
                                             </div>
                                         <?php endif; ?>
-                                        <h5 class="card-title mb-1"><?= $sign->sign_name ?></h5>
-                                        <span class="badge badge-info"><?= ucfirst($sign->sign_type) ?></span>
-                                        <?php if ($sign->category_name): ?>
-                                            <br><small class="text-muted"><?= $sign->category_name ?></small>
-                                        <?php endif; ?>
                                     </div>
-                                    <div class="card-footer text-center p-2">
-                                        <a href="<?= base_url('FSL/sign_detail/' . $sign->sign_id) ?>" class="btn btn-sm btn-outline-primary">View</a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         <?php endforeach; ?>
                     </div>
 
                     <?php if (empty($signs)): ?>
-                        <div class="row">
-                            <div class="col-12 text-center py-5">
-                                <i class="mdi mdi-book-open-variant" style="font-size: 64px; color: #ccc;"></i>
-                                <h4 class="mt-3 text-muted">No signs found</h4>
-                                <p class="text-muted">Try adjusting your filters or search query.</p>
+                        <div class="sl-card">
+                            <div class="sl-empty-state">
+                                <i class="mdi mdi-book-open-page-variant"></i>
+                                <h4 style="color: var(--sl-text);">No signs found</h4>
+                                <p style="color: var(--sl-text-muted);">Try adjusting your filters or search query</p>
+                                <a href="<?= base_url('FSL/dictionary') ?>" class="sl-btn sl-btn-outline mt-3">
+                                    <i class="mdi mdi-refresh mr-2"></i>Clear Filters
+                                </a>
                             </div>
                         </div>
                     <?php endif; ?>
 
                 </div>
-                <!-- end container-fluid -->
             </div>
-            <!-- end content -->
-
             <?php $this->load->view('includes/footer'); ?>
         </div>
-        <!-- End Page content -->
     </div>
-    <!-- END wrapper -->
 
     <?php $this->load->view('includes/footer_plugins'); ?>
 </body>

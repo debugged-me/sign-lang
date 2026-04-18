@@ -28,7 +28,7 @@
                             <div class="card-box">
                                 <?php if (!empty($sessions)): ?>
                                     <div class="table-responsive">
-                                        <table class="table table-striped">
+                                        <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>Date</th>
@@ -36,6 +36,7 @@
                                                     <th>Score</th>
                                                     <th>Attempts</th>
                                                     <th>Duration</th>
+                                                    <th>Captured Images</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -51,6 +52,15 @@
                                                         </td>
                                                         <td><?= $session->correct_attempts ?> / <?= $session->total_attempts ?></td>
                                                         <td><?= gmdate('i:s', $session->duration_seconds) ?></td>
+                                                        <td>
+                                                            <?php if (!empty($session->captured_count) && $session->captured_count > 0): ?>
+                                                                <span class="badge badge-info">
+                                                                    <i class="mdi mdi-camera"></i> <?= $session->captured_count ?>
+                                                                </span>
+                                                            <?php else: ?>
+                                                                <span class="text-muted">-</span>
+                                                            <?php endif; ?>
+                                                        </td>
                                                         <td>
                                                             <a href="<?= base_url('Practice/results/' . $session->session_id) ?>" class="btn btn-sm btn-outline-primary">View</a>
                                                         </td>

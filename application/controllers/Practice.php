@@ -137,6 +137,32 @@ class Practice extends CI_Controller
         $recognized_label = $this->input->post('recognized_label');
         $confidence = $this->input->post('confidence');
 
+        $image_path = null;
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $config['upload_path'] = './upload/practice_captures/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = 1024 * 1024; // 1MB
+            $config['file_name'] = 'capture_' . $session_id . '_' . $sign_id . '_' . time() . '.jpg';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image')) {
+                $upload_data = $this->upload->data();
+                $image_path = 'upload/practice_captures/' . $upload_data['file_name'];
+            }
+        } elseif ($this->input->post('image')) {
+            $image_data = $this->input->post('image');
+            $image_data = str_replace('data:image/jpeg;base64,', '', $image_data);
+            $image_data = base64_decode($image_data);
+            
+            $filename = 'capture_' . $session_id . '_' . $sign_id . '_' . time() . '.jpg';
+            $filepath = './upload/practice_captures/' . $filename;
+            
+            if (file_put_contents($filepath, $image_data)) {
+                $image_path = 'upload/practice_captures/' . $filename;
+            }
+        }
+
         // Get the expected sign
         $expected_sign = $this->FSLModel->get_sign_by_id($sign_id);
         
@@ -155,7 +181,8 @@ class Practice extends CI_Controller
             'sign_id' => $sign_id,
             'recognized_sign' => $recognized_label,
             'is_correct' => $is_correct ? 1 : 0,
-            'confidence_score' => $confidence
+            'confidence_score' => $confidence,
+            'captured_image_path' => $image_path
         );
 
         $this->PracticeModel->record_attempt($attempt_data);
@@ -168,7 +195,8 @@ class Practice extends CI_Controller
             'is_correct' => $is_correct,
             'expected' => $expected_sign->sign_name,
             'recognized' => $recognized_label,
-            'achievements' => $new_achievements
+            'achievements' => $new_achievements,
+            'image_path' => $image_path
         ));
     }
 

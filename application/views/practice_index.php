@@ -10,126 +10,139 @@
         <div class="content-page">
             <div class="content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="page-title-box">
-                                <h4 class="page-title">Practice Mode</h4>
-                            </div>
-                        </div>
+                    <!-- Page Header -->
+                    <div class="sl-page-header">
+                        <span class="sl-section-subtitle">Interactive Learning</span>
+                        <h1 class="sl-page-title">Practice Mode</h1>
+                        <p class="sl-page-subtitle">Use your camera to practice signs with AI-powered feedback</p>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-box bg-primary text-white">
-                                <div class="row align-items-center">
-                                    <div class="col-md-8">
-                                        <h3 class="text-white">Free Practice</h3>
-                                        <p class="mb-0">Practice with recommended signs based on your learning progress. Our AI will help you improve your signing accuracy.</p>
+                    <!-- Free Practice Hero -->
+                    <div class="sl-hero mb-4">
+                        <div class="row align-items-center position-relative" style="z-index: 1;">
+                            <div class="col-lg-8">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center mr-3" style="width: 72px; height: 72px; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); animation: pulse 2s ease-in-out infinite;">
+                                        <i class="mdi mdi-camera text-white" style="font-size: 36px;"></i>
                                     </div>
-                                    <div class="col-md-4 text-md-right">
-                                        <a href="<?= base_url('Practice/free_practice') ?>" class="btn btn-light btn-lg">
-                                            <i class="mdi mdi-camera"></i> Start Free Practice
-                                        </a>
+                                    <div>
+                                        <h2 class="text-white font-weight-bold mb-1" style="font-size: 2rem;">Free Practice</h2>
+                                        <p class="mb-0" style="color: rgba(255,255,255,0.8);">AI-powered sign recognition</p>
                                     </div>
                                 </div>
+                                <p class="text-white" style="font-size: 1.1rem; opacity: 0.95; line-height: 1.7;">
+                                    Practice with recommended signs based on your learning progress. Our AI system analyzes your hand gestures and provides real-time feedback.
+                                </p>
+                            </div>
+                            <div class="col-lg-4 text-lg-right mt-4 mt-lg-0">
+                                <a href="<?= base_url('Practice/free_practice') ?>" class="sl-btn" style="background: white; color: var(--sl-primary); font-size: 1.1rem; padding: 18px 36px; animation: float 3s ease-in-out infinite;">
+                                    <i class="mdi mdi-play-circle mr-2"></i>Start Free Practice
+                                </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-box">
-                                <h4 class="header-title mb-3">Practice by Category</h4>
-                                <div class="row">
-                                    <?php foreach ($categories as $category): ?>
-                                        <div class="col-md-3 col-sm-6 mb-3">
-                                            <a href="<?= base_url('Practice/category/' . $category->category_id) ?>" class="text-decoration-none">
-                                                <div class="category-card p-4 border rounded text-center h-100">
-                                                    <i class="mdi mdi-folder-outline" style="font-size: 48px; color: #5b69bc;"></i>
-                                                    <h5 class="mt-3 mb-1"><?= $category->category_name ?></h5>
-                                                    <small class="text-muted">Practice signs</small>
+                    <!-- Practice by Category -->
+                    <div class="sl-card mb-4">
+                        <div class="p-4 border-bottom" style="border-color: var(--sl-border) !important;">
+                            <span class="sl-section-subtitle">Browse categories</span>
+                            <h4 class="font-weight-bold mb-0" style="color: var(--sl-text);">Practice by Category</h4>
+                        </div>
+                        <div class="p-4">
+                            <div class="row">
+                                <?php foreach ($categories as $category): ?>
+                                    <div class="col-md-3 col-sm-6 mb-3">
+                                        <a href="<?= base_url('Practice/category/' . $category->category_id) ?>" class="text-decoration-none">
+                                            <div class="p-4 rounded text-center h-100 sl-card-animated" style="background: var(--sl-bg); border: 1px solid var(--sl-border); transition: all var(--sl-transition-base);">
+                                                <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 72px; height: 72px; background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%); animation: float 4s ease-in-out infinite;">
+                                                    <i class="mdi mdi-folder-outline" style="font-size: 36px; color: var(--sl-primary);"></i>
                                                 </div>
-                                            </a>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
+                                                <h5 class="font-weight-semibold mb-1" style="color: var(--sl-text);"><?= $category->category_name ?></h5>
+                                                <small style="color: var(--sl-text-muted);">Practice signs</small>
+                                            </div>
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card-box">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h4 class="header-title m-0">Practice by Lesson</h4>
-                                    <a href="<?= base_url('FSL/lessons') ?>" class="btn btn-sm btn-outline-primary">View All Lessons</a>
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
+                    <!-- Practice by Lesson -->
+                    <div class="sl-card mb-4">
+                        <div class="p-4 border-bottom d-flex justify-content-between align-items-center" style="border-color: var(--sl-border) !important;">
+                            <div>
+                                <span class="sl-section-subtitle">Guided practice</span>
+                                <h4 class="font-weight-bold mb-0" style="color: var(--sl-text);">Practice by Lesson</h4>
+                            </div>
+                            <a href="<?= base_url('FSL/lessons') ?>" class="sl-btn sl-btn-outline" style="padding: 10px 20px; font-size: 0.875rem;">
+                                View All Lessons
+                            </a>
+                        </div>
+                        <div class="p-0">
+                            <div class="table-responsive">
+                                <table class="sl-table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Lesson</th>
+                                            <th>Level</th>
+                                            <th>Signs</th>
+                                            <th>Duration</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($lessons as $lesson): ?>
                                             <tr>
-                                                <th>Lesson</th>
-                                                <th>Difficulty</th>
-                                                <th>Signs</th>
-                                                <th>Duration</th>
-                                                <th>Action</th>
+                                                <td>
+                                                    <div class="font-weight-semibold" style="color: var(--sl-text);"><?= $lesson->lesson_title ?></div>
+                                                    <small style="color: var(--sl-text-muted);"><?= substr($lesson->lesson_description, 0, 60) ?>...</small>
+                                                </td>
+                                                <td>
+                                                    <span class="sl-badge sl-badge-<?= $lesson->difficulty_level ?>">
+                                                        <?= ucfirst($lesson->difficulty_level) ?>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span style="color: var(--sl-text);"><i class="mdi mdi-format-list-bulleted mr-1" style="color: var(--sl-primary);"></i><?= $lesson->total_signs ?></span>
+                                                </td>
+                                                <td>
+                                                    <span style="color: var(--sl-text-muted);"><i class="mdi mdi-clock-outline mr-1"></i><?= $lesson->estimated_duration ?> min</span>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= base_url('Practice/lesson/' . $lesson->lesson_id) ?>" class="sl-btn sl-btn-primary" style="padding: 8px 16px; font-size: 0.8125rem;">
+                                                        <i class="mdi mdi-play mr-1"></i>Practice
+                                                    </a>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php foreach ($lessons as $lesson): ?>
-                                                <tr>
-                                                    <td>
-                                                        <strong><?= $lesson->lesson_title ?></strong>
-                                                        <br><small class="text-muted"><?= substr($lesson->lesson_description, 0, 60) ?>...</small>
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge badge-<?= $lesson->difficulty_level == 'beginner' ? 'success' : ($lesson->difficulty_level == 'intermediate' ? 'warning' : 'danger') ?>">
-                                                            <?= ucfirst($lesson->difficulty_level) ?>
-                                                        </span>
-                                                    </td>
-                                                    <td><?= $lesson->total_signs ?></td>
-                                                    <td><?= $lesson->estimated_duration ?> min</td>
-                                                    <td>
-                                                        <a href="<?= base_url('Practice/lesson/' . $lesson->lesson_id) ?>" class="btn btn-sm btn-primary">
-                                                            <i class="mdi mdi-play"></i> Practice
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Quick Links -->
                     <div class="row">
-                        <div class="col-12">
-                            <div class="card-box">
-                                <h4 class="header-title mb-3">Quick Links</h4>
-                                <div class="row">
-                                    <div class="col-md-4 mb-2">
-                                        <a href="<?= base_url('FSL/alphabet') ?>" class="btn btn-outline-info btn-block">
-                                            <i class="mdi mdi-alpha"></i> Learn Alphabet
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <a href="<?= base_url('FSL/numbers') ?>" class="btn btn-outline-info btn-block">
-                                            <i class="mdi mdi-numeric"></i> Learn Numbers
-                                        </a>
-                                    </div>
-                                    <div class="col-md-4 mb-2">
-                                        <a href="<?= base_url('Practice/history') ?>" class="btn btn-outline-secondary btn-block">
-                                            <i class="mdi mdi-history"></i> Practice History
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-md-4 mb-3">
+                            <a href="<?= base_url('FSL/alphabet') ?>" class="sl-btn sl-btn-outline w-100 justify-content-center">
+                                <i class="mdi mdi-alpha mr-2" style="font-size: 1.2rem;"></i>Learn Alphabet
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <a href="<?= base_url('FSL/numbers') ?>" class="sl-btn sl-btn-outline w-100 justify-content-center">
+                                <i class="mdi mdi-numeric mr-2" style="font-size: 1.2rem;"></i>Learn Numbers
+                            </a>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <a href="<?= base_url('Practice/history') ?>" class="sl-btn sl-btn-outline w-100 justify-content-center">
+                                <i class="mdi mdi-history mr-2" style="font-size: 1.2rem;"></i>Practice History
+                            </a>
                         </div>
                     </div>
 
                 </div>
             </div>
+            <?php $this->load->view('includes/footer'); ?>
         </div>
     </div>
 

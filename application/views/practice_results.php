@@ -59,6 +59,7 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>Captured Image</th>
                                                 <th>Sign</th>
                                                 <th>Your Answer</th>
                                                 <th>Result</th>
@@ -71,6 +72,13 @@
                                             <?php foreach ($attempts as $attempt): ?>
                                                 <tr>
                                                     <td><?= $counter++ ?></td>
+                                                    <td>
+                                                        <?php if ($attempt->captured_image_path): ?>
+                                                            <img src="<?= base_url($attempt->captured_image_path) ?>" alt="Captured" style="height: 50px; width: 50px; object-fit: cover;" class="rounded">
+                                                        <?php else: ?>
+                                                            <span class="text-muted">-</span>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td>
                                                         <?php if ($attempt->image_path): ?>
                                                             <img src="<?= base_url($attempt->image_path) ?>" alt="<?= $attempt->sign_name ?>" style="height: 40px;" class="mr-2">
