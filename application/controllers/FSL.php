@@ -25,13 +25,20 @@ class FSL extends CI_Controller
     public function index()
     {
         $user_id = $this->session->userdata('user_id');
-        
+
         $data['title'] = 'FSL Learning Dashboard';
         $data['stats'] = $this->PracticeModel->get_user_statistics($user_id);
         $data['featured_signs'] = $this->FSLModel->get_featured_signs(6);
         $data['recent_lessons'] = $this->LessonModel->get_all_lessons(array('is_published' => 1), 4);
         $data['categories'] = $this->FSLModel->get_all_categories();
-        
+
+        // Rich previews for the dashboard (actual FSL figures)
+        $data['alphabet_preview'] = $this->FSLModel->get_signs_by_type('alphabet', 12);
+        $data['numbers_preview']  = $this->FSLModel->get_signs_by_type('number', 10);
+        $data['phrase_preview']   = $this->FSLModel->get_signs_by_type('phrase', 4);
+        $data['word_preview']     = $this->FSLModel->get_signs_by_type('word', 4);
+        $data['sign_stats']       = $this->FSLModel->get_signs_statistics();
+
         // Add progress info to lessons
         foreach ($data['recent_lessons'] as &$lesson) {
             $lesson->progress = $this->LessonModel->get_user_lesson_progress($user_id, $lesson->lesson_id);
