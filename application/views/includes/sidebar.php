@@ -8,48 +8,65 @@ $__is = function ($needle) use ($__currentUrl) {
     }
     return strpos($__currentUrl, $needle) === 0;
 };
+$__dictOpen = ($__is('fsl/dictionary') || $__is('fsl/alphabet') || $__is('fsl/numbers') || $__is('fsl/sign_detail'));
+$__dashActive = ($__is('fsl') && !$__dictOpen && !$__is('fsl/lessons') && !$__is('fsl/lesson') && !$__is('fsl/progress'));
+$__userType   = strtolower((string) $this->session->userdata('user_type'));
+$__isAdmin    = ($__userType === 'admin' || $__userType === 'instructor');
 ?>
 <div class="left-side-menu fsl-sidebar">
     <div class="slimscroll-menu d-flex flex-column h-100">
 
         <!-- Brand -->
-        <div class="sidebar-brand">
-            <h1 style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:1.375rem;color:var(--sl-primary);letter-spacing:-0.02em;margin:0 0 2px 4px;">SignLearn</h1>
-            <p style="font-family:'Manrope',sans-serif;font-size:0.625rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--sl-text-muted);font-weight:700;margin:0 0 0 4px;opacity:0.75;">FSL Learning Platform</p>
-        </div>
+        <a href="<?= base_url('FSL') ?>" class="sidebar-brand" style="text-decoration:none;">
+            <div class="d-flex align-items-center" style="gap:10px;">
+                <div class="sidebar-brand-mark">
+                    <img src="<?= base_url('upload/banners/FSL-LOGO.png') ?>" alt="SignLearn logo">
+                </div>
+                <div>
+                    <h1>SignLearn</h1>
+                </div>
+            </div>
+        </a>
 
         <!-- Sidemenu -->
         <div id="sidebar-menu" class="flex-grow-1">
+            <div class="sidebar-section-label">Learn</div>
             <ul class="metismenu" id="side-menu">
-                <li class="<?= ($__is('fsl') && !$__is('fsl/dictionary') && !$__is('fsl/alphabet') && !$__is('fsl/numbers') && !$__is('fsl/lessons') && !$__is('fsl/progress')) ? 'active' : '' ?>">
+                <li class="<?= $__dashActive ? 'active' : '' ?>">
                     <a href="<?= base_url('FSL'); ?>">
                         <i class="mdi mdi-view-dashboard-outline"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
 
-                <li class="<?= ($__is('fsl/dictionary') || $__is('fsl/alphabet') || $__is('fsl/numbers')) ? 'active' : '' ?>">
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-book-open-page-variant-outline"></i>
+                <li class="<?= $__dictOpen ? 'active mm-active' : '' ?>">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect <?= $__dictOpen ? 'mm-active' : '' ?>" aria-expanded="<?= $__dictOpen ? 'true' : 'false' ?>">
+                        <i class="mdi mdi-dictionary"></i>
                         <span>Dictionary</span>
-                        <i class="mdi mdi-menu menu-arrow"></i>
                     </a>
-                    <ul class="nav-second-level" aria-expanded="<?= ($__is('fsl/dictionary') || $__is('fsl/alphabet') || $__is('fsl/numbers')) ? 'true' : 'false' ?>">
-                        <li><a href="<?= base_url('FSL/dictionary'); ?>">All Signs</a></li>
-                        <li><a href="<?= base_url('FSL/alphabet'); ?>">Alphabet</a></li>
-                        <li><a href="<?= base_url('FSL/numbers'); ?>">Numbers</a></li>
+                    <ul class="nav-second-level <?= $__dictOpen ? 'mm-collapse mm-show' : 'mm-collapse' ?>" aria-expanded="<?= $__dictOpen ? 'true' : 'false' ?>">
+                        <li class="<?= $__is('fsl/dictionary') && !$__is('fsl/sign_detail') ? 'active' : '' ?>">
+                            <a href="<?= base_url('FSL/dictionary'); ?>"><span class="sub-dot"></span>All Signs</a>
+                        </li>
+                        <li class="<?= $__is('fsl/alphabet') ? 'active' : '' ?>">
+                            <a href="<?= base_url('FSL/alphabet'); ?>"><span class="sub-dot"></span>Alphabet</a>
+                        </li>
+                        <li class="<?= $__is('fsl/numbers') ? 'active' : '' ?>">
+                            <a href="<?= base_url('FSL/numbers'); ?>"><span class="sub-dot"></span>Numbers</a>
+                        </li>
                     </ul>
                 </li>
 
-                <li class="<?= $__is('fsl/lessons') ? 'active' : '' ?>">
+                <li class="<?= ($__is('fsl/lessons') || $__is('fsl/lesson')) ? 'active' : '' ?>">
                     <a href="<?= base_url('FSL/lessons'); ?>">
                         <i class="mdi mdi-school-outline"></i>
                         <span>Lessons</span>
                     </a>
                 </li>
+            </ul>
 
-                <li class="menu-divider"></li>
-
+            <div class="sidebar-section-label">Practice</div>
+            <ul class="metismenu">
                 <li class="<?= $__is('practice') ? 'active' : '' ?>">
                     <a href="<?= base_url('Practice'); ?>">
                         <i class="mdi mdi-camera-outline"></i>
@@ -66,21 +83,31 @@ $__is = function ($needle) use ($__currentUrl) {
 
                 <li class="<?= $__is('fsl/progress') ? 'active' : '' ?>">
                     <a href="<?= base_url('FSL/progress'); ?>">
-                        <i class="mdi mdi-chart-box-outline"></i>
+                        <i class="mdi mdi-chart-line"></i>
                         <span>Progress</span>
                     </a>
                 </li>
-
-                <li class="menu-divider"></li>
-
-                <li>
-                    <a href="<?= base_url('Login/logout'); ?>">
-                        <i class="mdi mdi-logout-variant"></i>
-                        <span>Sign Out</span>
-                    </a>
-                </li>
             </ul>
+
+            <?php if ($__isAdmin): ?>
+                <div class="sidebar-section-label">Manage</div>
+                <ul class="metismenu">
+                    <li>
+                        <a href="<?= base_url('Admin') ?>">
+                            <i class="mdi mdi-shield-account-outline"></i>
+                            <span>Admin Console</span>
+                        </a>
+                    </li>
+                </ul>
+            <?php endif; ?>
         </div>
 
+        <!-- Sign Out pinned at bottom -->
+        <div class="sidebar-footer">
+            <a href="<?= base_url('Login/logout'); ?>" class="sidebar-logout">
+                <i class="mdi mdi-logout-variant"></i>
+                <span>Sign Out</span>
+            </a>
+        </div>
     </div>
 </div>
