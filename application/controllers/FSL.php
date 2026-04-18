@@ -37,9 +37,7 @@ class FSL extends CI_Controller
             $lesson->progress = $this->LessonModel->get_user_lesson_progress($user_id, $lesson->lesson_id);
         }
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/dashboard', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('dashboard', $data);
     }
 
     /**
@@ -67,9 +65,7 @@ class FSL extends CI_Controller
         $data['stats'] = $this->FSLModel->get_signs_statistics();
         $data['filters'] = $filters;
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/dictionary', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('dictionary', $data);
     }
 
     /**
@@ -89,9 +85,7 @@ class FSL extends CI_Controller
         $data['user_progress'] = $this->PracticeModel->get_user_sign_progress($user_id, $sign_id);
         $data['related_signs'] = $this->FSLModel->get_signs_by_category($data['sign']->category_id);
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/sign_detail', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('sign_detail', $data);
     }
 
     /**
@@ -116,9 +110,7 @@ class FSL extends CI_Controller
             $lesson->user_progress = $this->LessonModel->get_user_lesson_progress($user_id, $lesson->lesson_id);
         }
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/lessons', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('lessons', $data);
     }
 
     /**
@@ -138,9 +130,7 @@ class FSL extends CI_Controller
         $data['user_progress'] = $this->LessonModel->get_user_lesson_progress($user_id, $lesson_id);
         $data['next_lesson'] = $this->LessonModel->get_next_lesson($user_id, $lesson_id);
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/lesson_detail', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('lesson_detail', $data);
     }
 
     /**
@@ -156,9 +146,7 @@ class FSL extends CI_Controller
             $category->sign_count = $this->FSLModel->count_signs(array('category_id' => $category->category_id));
         }
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/categories', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('categories', $data);
     }
 
     /**
@@ -175,9 +163,7 @@ class FSL extends CI_Controller
 
         $data['signs'] = $this->FSLModel->get_signs_by_category($category_id);
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/category_detail', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('category_detail', $data);
     }
 
     /**
@@ -192,9 +178,7 @@ class FSL extends CI_Controller
         $data['all_progress'] = $this->PracticeModel->get_all_user_progress($user_id);
         $data['achievements'] = $this->PracticeModel->get_user_achievements($user_id);
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/progress', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('progress', $data);
     }
 
     /**
@@ -230,9 +214,7 @@ class FSL extends CI_Controller
         $data['title'] = 'Learn the FSL Alphabet';
         $data['letters'] = $this->FSLModel->get_signs_by_type('alphabet');
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/alphabet', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('alphabet', $data);
     }
 
     /**
@@ -243,8 +225,6 @@ class FSL extends CI_Controller
         $data['title'] = 'Learn FSL Numbers';
         $data['numbers'] = $this->FSLModel->get_signs_by_type('number');
 
-        $this->load->view('includes/head');
-        $this->load->view('fsl/numbers', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('numbers', $data);
     }
 }

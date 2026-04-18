@@ -29,9 +29,7 @@ class Quiz extends CI_Controller
         $user_id = $this->session->userdata('user_id');
         $data['quiz_history'] = $this->QuizModel->get_user_quiz_history($user_id, 5);
 
-        $this->load->view('includes/head');
-        $this->load->view('quiz/index', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('index', $data);
     }
 
     /**
@@ -107,9 +105,7 @@ class Quiz extends CI_Controller
             $data['options'] = $options;
         }
 
-        $this->load->view('includes/head');
-        $this->load->view('quiz/question', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('question', $data);
     }
 
     /**
@@ -283,9 +279,7 @@ class Quiz extends CI_Controller
             show_404();
         }
 
-        $this->load->view('includes/head');
-        $this->load->view('quiz/results', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('results', $data);
     }
 
     /**
@@ -298,8 +292,6 @@ class Quiz extends CI_Controller
         $data['title'] = 'Quiz History';
         $data['quiz_history'] = $this->QuizModel->get_user_quiz_history($user_id);
 
-        $this->load->view('includes/head');
-        $this->load->view('quiz/history', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('quiz_history', $data);
     }
 }

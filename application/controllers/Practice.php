@@ -27,9 +27,7 @@ class Practice extends CI_Controller
         $data['categories'] = $this->FSLModel->get_all_categories();
         $data['lessons'] = $this->LessonModel->get_all_lessons(array('is_published' => 1), 10);
 
-        $this->load->view('includes/head');
-        $this->load->view('practice/index', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('practice_index', $data);
     }
 
     /**
@@ -60,9 +58,7 @@ class Practice extends CI_Controller
         $data['signs'] = $signs;
         $data['total_signs'] = count($signs);
 
-        $this->load->view('includes/head');
-        $this->load->view('practice/session', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('session', $data);
     }
 
     /**
@@ -93,9 +89,7 @@ class Practice extends CI_Controller
         $data['signs'] = $signs;
         $data['total_signs'] = count($signs);
 
-        $this->load->view('includes/head');
-        $this->load->view('practice/session', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('session', $data);
     }
 
     /**
@@ -125,9 +119,7 @@ class Practice extends CI_Controller
         $data['total_signs'] = count($signs);
         $data['is_free_practice'] = true;
 
-        $this->load->view('includes/head');
-        $this->load->view('practice/session', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('session', $data);
     }
 
     /**
@@ -226,9 +218,7 @@ class Practice extends CI_Controller
             show_404();
         }
 
-        $this->load->view('includes/head');
-        $this->load->view('practice/results', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('practice_results', $data);
     }
 
     /**
@@ -241,9 +231,7 @@ class Practice extends CI_Controller
         $data['title'] = 'Practice History';
         $data['sessions'] = $this->PracticeModel->get_user_sessions($user_id);
 
-        $this->load->view('includes/head');
-        $this->load->view('practice/history', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('practice_history', $data);
     }
 
     /**
@@ -295,8 +283,6 @@ class Practice extends CI_Controller
     {
         $data['title'] = 'Camera Test';
         
-        $this->load->view('includes/head');
-        $this->load->view('practice/test_camera', $data);
-        $this->load->view('includes/footer');
+        $this->load->view('practice_test_camera', $data);
     }
 }

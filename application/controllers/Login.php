@@ -23,6 +23,7 @@ class Login extends CI_Controller
         }
 
         $data['title'] = 'Login';
+        $data['settings'] = $this->db->get('site_settings')->row();
         $this->load->view('home_page', $data);
     }
 

@@ -28,4 +28,17 @@
     <link href="<?= base_url(); ?>assets/libs/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url(); ?>assets/libs/datatables/select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
+
+    <style>
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('<?= base_url() ?>assets/fonts/Jakarta-fonts/PlusJakartaSans-Regular.ttf'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('<?= base_url() ?>assets/fonts/Jakarta-fonts/PlusJakartaSans-Medium.ttf'); font-weight: 500; font-style: normal; }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('<?= base_url() ?>assets/fonts/Jakarta-fonts/PlusJakartaSans-SemiBold.ttf'); font-weight: 600; font-style: normal; }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('<?= base_url() ?>assets/fonts/Jakarta-fonts/PlusJakartaSans-Bold.ttf'); font-weight: 700; font-style: normal; }
+
+        body, h1, h2, h3, h4, h5, h6, p, a, span, td, th, label, input, button, select, textarea, .card, .nav-item, .sidebar-item {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+        }
+
+        .content-page .content { padding-bottom: 40px; }
+    </style>
 </head>

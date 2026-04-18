@@ -5,443 +5,241 @@
     <title>SignLearn – Sign In</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="icon" href="<?= base_url(); ?>assets/images/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/util.css">
+    <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/main.css">
+
     <style>
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('<?= base_url() ?>assets/fonts/Jakarta-fonts/PlusJakartaSans-Regular.ttf'); font-weight: 400; }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('<?= base_url() ?>assets/fonts/Jakarta-fonts/PlusJakartaSans-Medium.ttf'); font-weight: 500; }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('<?= base_url() ?>assets/fonts/Jakarta-fonts/PlusJakartaSans-SemiBold.ttf'); font-weight: 600; }
+        @font-face { font-family: 'Plus Jakarta Sans'; src: url('<?= base_url() ?>assets/fonts/Jakarta-fonts/PlusJakartaSans-Bold.ttf'); font-weight: 700; }
 
-        :root {
-            --blue: #2563eb;
-            --blue-dark: #1d4ed8;
-            --blue-light: #eff6ff;
-            --text: #111827;
-            --text-muted: #6b7280;
-            --border: #d1d5db;
-            --bg: #f3f4f6;
-            --white: #ffffff;
-            --danger-bg: #fef2f2;
-            --danger-text: #b91c1c;
-            --success-bg: #f0fdf4;
-            --success-text: #15803d;
-            --radius: 12px;
+        body, .login100-form, .input100, .label-input100, .login100-form-btn, .txt2, .txt2 a, .txt2 span {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
         }
+    </style>
 
-        html,
-        body {
-            height: 100%;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-        }
+    <style>
+        .wrap-input100 { position: relative; }
 
-        /* ── PAGE LAYOUT ── */
-        .page {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* ── LEFT PANEL ── */
-        .panel-left {
-            flex: 1;
-            background: url('<?= base_url("upload/banners/Payroll.jpg") ?>') center center / cover no-repeat;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 56px;
-        }
-
-        .panel-left::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(10, 20, 50, 0.82) 0%, rgba(10, 20, 50, 0.15) 55%);
-        }
-
-        .panel-left-content {
-            position: relative;
-            z-index: 1;
-            color: var(--white);
-        }
-
-        .panel-left-content h1 {
-            font-size: 36px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 14px;
-        }
-
-        .panel-left-content p {
-            font-size: 16px;
-            opacity: 0.75;
-            max-width: 420px;
-            line-height: 1.7;
-        }
-
-        /* ── RIGHT PANEL — wider ── */
-        .panel-right {
-            width: 560px;
-            flex-shrink: 0;
-            background: var(--white);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 64px 60px;
-            border-left: 1px solid var(--border);
-        }
-
-        /* ── LOGO ── */
-        .logo-wrap {
-            margin-bottom: 40px;
-        }
-
-        .logo-wrap img {
-            height: 48px;
+        .label-input100 {
+            display: inline-block;
             width: auto;
-            display: block;
-        }
-
-        /* ── HEADING ── */
-        .form-heading {
-            margin-bottom: 36px;
-        }
-
-        .form-heading h2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 6px;
-        }
-
-        .form-heading p {
-            font-size: 15px;
-            color: var(--text-muted);
-        }
-
-        /* ── ALERTS ── */
-        .alert {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 13px 16px;
-            border-radius: var(--radius);
-            font-size: 14px;
-            margin-bottom: 24px;
-        }
-
-        .alert-danger {
-            background: var(--danger-bg);
-            color: var(--danger-text);
-        }
-
-        .alert-success {
-            background: var(--success-bg);
-            color: var(--success-text);
-        }
-
-        .alert i {
-            font-size: 15px;
-            flex-shrink: 0;
-        }
-
-        /* ================================================================
-           MATERIAL OUTLINE FLOATING LABEL
-           The label lives inside the field at rest, then rises to sit
-           exactly on the top border — splitting it — when focused or
-           when the field has a value.
-
-           How the "gap" in the border works:
-           The input has a full border. The label gets a white background
-           and is positioned so its vertical centre aligns with the top
-           border (top: 0, transform: translateY(-50%)). The white bg
-           of the label paints over the border line, creating the gap.
-           ================================================================ */
-        .form-group {
-            position: relative;
-            margin-bottom: 32px;
-        }
-
-        /* Input — flat padding, no top offset needed */
-        .form-group input {
-            width: 100%;
-            height: 58px;
-            padding: 0 52px 0 52px;
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius);
-            font-size: 16px;
-            color: var(--text);
-            background: var(--white);
-            outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .form-group input.has-toggle {
-            padding-right: 52px;
-        }
-
-        .form-group input:focus {
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
-        }
-
-        /* ── Label: default state (inside the field, vertically centred) ── */
-        .form-group label {
-            position: absolute;
-            left: 46px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 15px;
-            color: var(--text-muted);
-            pointer-events: none;
-            background: var(--white);
-            padding: 0 6px;
-            line-height: 1;
-            transition:
-                top 0.18s ease,
-                font-size 0.18s ease,
-                color 0.18s ease,
-                transform 0.18s ease;
-        }
-
-        /* ── Label: floated state — sits on the top border, piercing it ── */
-        .form-group input:focus~label,
-        .form-group input:not(:placeholder-shown)~label {
-            top: 0;
-            transform: translateY(-50%);
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--blue);
-            letter-spacing: 0.04em;
-        }
-
-        /* Left icon */
-        .field-icon {
             position: absolute;
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 17px;
-            color: var(--text-muted);
-            pointer-events: none;
-            transition: color 0.2s;
-        }
-
-        .form-group:focus-within .field-icon {
-            color: var(--blue);
-        }
-
-        /* Password toggle button */
-        .btn-toggle {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--text-muted);
-            font-size: 16px;
-            padding: 6px;
-            line-height: 1;
-            transition: color 0.15s;
-        }
-
-        .btn-toggle:hover {
-            color: var(--text);
-        }
-
-        /* ── SUBMIT ── */
-        .btn-primary {
-            width: 100%;
-            height: 54px;
-            background: var(--blue);
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius);
+            color: #9b9b9b;
             font-size: 16px;
             font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
-            margin-top: 4px;
-            letter-spacing: 0.01em;
+            pointer-events: none;
+            transition: 0.2s ease;
+            background: #f7f7f7;
+            padding: 0 10px;
+            z-index: 3;
         }
 
-        .btn-primary:hover {
-            background: var(--blue-dark);
-        }
-
-        .btn-primary:active {
-            transform: scale(0.99);
-        }
-
-        /* ── FOOTER LINKS ── */
-        .form-footer {
-            margin-top: 28px;
-            text-align: center;
-        }
-
-        .form-footer a {
-            color: var(--blue);
+        .input100:focus + .focus-input100 + .label-input100,
+        .has-val.input100 + .focus-input100 + .label-input100 {
+            top: -8px;
+            transform: none;
             font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
+            color: #2563eb;
+            background: #f7f7f7;
+            padding: 0 8px;
         }
 
-        .form-footer a:hover {
-            text-decoration: underline;
+        .focus-input100 { z-index: 1; }
+
+        .has-val.input100 + .focus-input100 {
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
         }
 
-        .form-footer .sep {
-            color: var(--border);
-            margin: 0 10px;
-        }
+        .password-wrap { position: relative; }
+        .password-wrap .input100 { padding-right: 45px; }
 
-        /* ── HINT BOX ── */
-        .hint-box {
-            margin-top: 22px;
-            padding: 12px 16px;
-            background: var(--blue-light);
-            border-radius: var(--radius);
-            font-size: 13px;
-            color: #1e40af;
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 10;
+            color: #666;
+            font-size: 16px;
+        }
+        .toggle-password:hover { color: #333; }
+
+        .container-login100 {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        .hint-box i {
-            font-size: 14px;
-            flex-shrink: 0;
+        .wrap-login100 {
+            display: flex;
+            align-items: stretch;
+            min-height: 100vh;
+            width: 100%;
         }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 900px) {
-            .panel-left {
-                display: none;
-            }
+        .login100-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 55px;
+        }
 
-            .panel-right {
-                width: 100%;
-                padding: 48px 32px;
-            }
+        .login100-more {
+            flex: 1;
         }
     </style>
 </head>
 
-<body>
+<body style="background-color: #666666;">
 
-    <div class="page">
+    <?php
+        $bgUrl   = (!empty($settings) && !empty($settings->login_bg_image))
+                    ? base_url('upload/banners/' . $settings->login_bg_image) : '';
+        $logoUrl = (!empty($settings) && !empty($settings->login_logo))
+                    ? base_url('upload/banners/' . $settings->login_logo) : '';
+        $siteName = (!empty($settings) && !empty($settings->site_name)) ? $settings->site_name : 'SignLearn';
+    ?>
 
-        <!-- LEFT: background image panel -->
-        <div class="panel-left">
-            <div class="panel-left-content">
-                <h1>Learn Sign Language<br>Anywhere, Anytime</h1>
-                <p>Build real communication skills with interactive lessons and step-by-step progress tracking.</p>
-            </div>
-        </div>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
 
-        <!-- RIGHT: login form -->
-        <div class="panel-right">
+                <form action="<?= site_url('Login/login') ?>" method="post" class="login100-form validate-form">
 
-            <div class="logo-wrap">
-                <img src="<?= base_url('upload/banners/softtech_logo111.jpg') ?>" alt="SignLearn">
-            </div>
+                    <span class="login100-form-title p-b-43">
+                        <?php if ($logoUrl): ?>
+                            <img src="<?= $logoUrl ?>" alt="<?= $siteName ?>" height="150" width="150" loading="lazy" decoding="async">
+                        <?php else: ?>
+                            <span style="font-size:22px;font-weight:700;color:#333;"><?= $siteName ?></span>
+                        <?php endif; ?>
+                    </span>
 
-            <div class="form-heading">
-                <h2>Welcome back</h2>
-                <p>Sign in to your account to continue</p>
-            </div>
+                    <?php if ($this->session->flashdata('error')): ?>
+                        <div style="text-align:center;color:#fff;background:#c0392b;border-radius:6px;padding:8px 14px;margin-bottom:14px;font-size:14px;">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <?= $this->session->flashdata('error') ?>
+                        </div>
+                    <?php endif; ?>
 
-            <!-- Flash Messages -->
-            <?php if ($this->session->flashdata('error')): ?>
-                <div class="alert alert-danger">
-                    <i class="fa-solid fa-circle-exclamation"></i>
-                    <?= $this->session->flashdata('error') ?>
-                </div>
-            <?php endif; ?>
+                    <?php if ($this->session->flashdata('success')): ?>
+                        <div style="text-align:center;color:#fff;background:#27ae60;border-radius:6px;padding:8px 14px;margin-bottom:14px;font-size:14px;">
+                            <i class="fa fa-check-circle"></i>
+                            <?= $this->session->flashdata('success') ?>
+                        </div>
+                    <?php endif; ?>
 
-            <?php if ($this->session->flashdata('success')): ?>
-                <div class="alert alert-success">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <?= $this->session->flashdata('success') ?>
-                </div>
-            <?php endif; ?>
+                    <div class="wrap-input100 validate-input" data-validate="Username is required">
+                        <input class="input100" type="text" autocomplete="username" name="username" id="loginUsername" placeholder="">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Username</span>
+                    </div>
 
-            <form action="<?= base_url('Login/login') ?>" method="post">
-                <input type="hidden" name="next" value="<?= html_escape($this->input->get('next')) ?>">
+                    <div class="wrap-input100 validate-input password-wrap" data-validate="Password is required">
+                        <input class="input100" type="password" autocomplete="current-password" name="password" id="loginPassword" placeholder="">
+                        <span class="focus-input100"></span>
+                        <span class="label-input100">Password</span>
+                        <span class="toggle-password" onclick="togglePassword()" id="togglePassword">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                    </div>
 
-                <!--
-                IMPORTANT: input must come BEFORE label in the markup.
-                The CSS uses the ~ (general sibling) selector:
-                  input:focus ~ label  →  only works when label comes AFTER input.
-                placeholder=" " (a single space) is intentional — it makes
-                :not(:placeholder-shown) fire correctly when the field has a value.
-            -->
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">Login</button>
+                    </div>
 
-                <!-- Username -->
-                <div class="form-group">
-                    <input
-                        type="text"
-                        id="loginUsername"
-                        name="username"
-                        autocomplete="username"
-                        placeholder=" "
-                        required>
-                    <label for="loginUsername">Username</label>
-                    <i class="fa-regular fa-user field-icon"></i>
-                </div>
+                    <div class="text-center p-t-46 p-b-20">
+                        <span class="txt2">
+                            <a href="<?= site_url('Login/register') ?>"><span style="color:#3498db">CREATE AN ACCOUNT</span></a>
+                            &nbsp;|&nbsp;
+                            <a href="<?= site_url('Login/demo') ?>">TRY DEMO</a>
+                        </span>
+                    </div>
 
-                <!-- Password -->
-                <div class="form-group">
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        name="password"
-                        class="has-toggle"
-                        autocomplete="current-password"
-                        placeholder=" "
-                        required>
-                    <label for="loginPassword">Password</label>
-                    <i class="fa-solid fa-lock field-icon"></i>
-                    <button type="button" class="btn-toggle" id="togglePassword" aria-label="Show password">
-                        <i class="fa-regular fa-eye" id="toggleIcon"></i>
-                    </button>
+                </form>
+
+                <div class="login100-more"
+                    <?php if ($bgUrl): ?>data-bg="<?= $bgUrl ?>"<?php else: ?>style="background-color:#1a2a4a;"<?php endif; ?>>
                 </div>
 
-                <button type="submit" class="btn-primary">Sign in</button>
-            </form>
-
-            <div class="form-footer">
-                <a href="<?= base_url('Login/register') ?>">Create account</a>
-                <span class="sep">|</span>
-                <a href="<?= base_url('Login/demo') ?>">Try demo</a>
             </div>
-
-            <div class="hint-box">
-                <i class="fa-solid fa-circle-info"></i>
-                Default credentials: <strong>admin</strong> / <strong>admin123</strong>
-            </div>
-
         </div>
     </div>
 
+    <script src="<?= base_url(); ?>assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/animsition/js/animsition.min.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/bootstrap/js/popper.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/select2/select2.min.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/daterangepicker/moment.min.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/daterangepicker/daterangepicker.js"></script>
+    <script src="<?= base_url(); ?>assets/vendor/countdowntime/countdowntime.js"></script>
+    <script src="<?= base_url(); ?>assets/js/main.js"></script>
+
     <script>
-        document.getElementById('togglePassword').addEventListener('click', function() {
+        (function($) {
+            var $fields = $('.wrap-input100 .input100').filter('[type="text"],[type="password"]');
+
+            function toggleHasVal() {
+                $(this).toggleClass('has-val', $.trim($(this).val()).length > 0);
+            }
+
+            $fields.each(function() { toggleHasVal.call(this); });
+            $fields.on('input blur', toggleHasVal);
+
+            setTimeout(function() {
+                $fields.each(function() { toggleHasVal.call(this); });
+            }, 300);
+        })(jQuery);
+    </script>
+
+    <script>
+        // Lazy-load background image after first paint
+        (function($) {
+            $(function() {
+                var $bg = $('.login100-more');
+                var url = $bg.attr('data-bg');
+                if (!url) return;
+                var img = new Image();
+                img.onload = function() {
+                    $bg.css('background-image', "url('" + url + "')");
+                };
+                img.src = url;
+            });
+        })(jQuery);
+    </script>
+
+    <script>
+        function togglePassword() {
             var input = document.getElementById('loginPassword');
-            var icon = document.getElementById('toggleIcon');
-            var isHidden = input.type === 'password';
-            input.type = isHidden ? 'text' : 'password';
-            icon.className = isHidden ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
-            this.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
-        });
+            var icon = document.querySelector('#togglePassword i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
     </script>
 
 </body>
-
 </html>
