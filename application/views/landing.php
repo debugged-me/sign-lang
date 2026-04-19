@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FSL — Filipino Sign Language</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="<?php echo base_url('assets/images/favicon.ico'); ?>">
     <style>
         :root {
             --sl-primary: #0E7490;
@@ -1810,7 +1811,7 @@
 
     <!-- NAV -->
     <nav>
-        <a class="nav-logo" href="#">
+        <a class="nav-logo" href="<?php echo base_url(); ?>">
             <div class="nav-logo-icon">🤟</div>
             <div class="nav-logo-text">FSL<span>Hub</span></div>
         </a>
@@ -1819,7 +1820,7 @@
             <li><a href="#features">Features</a></li>
             <li><a href="#community">Community</a></li>
             <li><a href="#about">About FSL</a></li>
-            <li><a href="#start" class="nav-cta">Get Started →</a></li>
+            <li><a href="<?php echo base_url('Login'); ?>" class="nav-cta">Get Started →</a></li>
         </ul>
     </nav>
 
@@ -1842,7 +1843,7 @@
                 FSLHub bridges the gap between hearing and deaf communities in the Philippines. Learn, practice, and celebrate Filipino Sign Language — the vibrant visual language of over 100,000 deaf Filipinos.
             </p>
             <div class="hero-actions">
-                <a href="#start" class="btn-primary">
+                <a href="<?php echo base_url('Login'); ?>" class="btn-primary">
                     🤟 Start Learning
                 </a>
                 <a href="#features" class="btn-secondary">
@@ -2339,8 +2340,8 @@
             <h2 class="cta-title">Start Your FSL<br>Journey Today 🤟</h2>
             <p class="cta-subtitle">Learn Filipino Sign Language for free and help build a world where every Filipino — hearing and deaf alike — can communicate without barriers.</p>
             <div class="cta-actions">
-                <a href="#" class="btn-white">🤟 Start for Free</a>
-                <a href="#" class="btn-outline-white">📚 Explore Lessons</a>
+                <a href="<?php echo base_url('Login'); ?>" class="btn-white">🤟 Start for Free</a>
+                <a href="<?php echo base_url('Login'); ?>" class="btn-outline-white">📚 Explore Lessons</a>
             </div>
         </div>
     </section>

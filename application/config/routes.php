@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-$route['default_controller'] = 'FSL';
+$route['default_controller'] = 'Landing';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['Page/saveAdminFromSuperAdmin'] = 'Page/saveAdminFromSuperAdmin';
